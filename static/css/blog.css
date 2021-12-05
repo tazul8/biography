@@ -1,0 +1,23 @@
+.article_img {
+    height: 680px;
+    width: 76%;
+    margin-left: 12%;
+    margin-right: 12%;
+    padding-top: 50px;
+}
+.article_caption {
+    width: 76%;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    margin-left: 12%;
+    margin-right: 12%;
+}
+.article_date {
+    color: #00B8D4;
+}
+.article_detail {
+    margin-bottom: 90px;
+    width: 76%;
+    margin-left: 12%;
+    margin-right: 12%;
+}

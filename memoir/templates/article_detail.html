@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+  {{ object.title }} 
+{% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+    <img class="article_img" src="{{ object.image.url }}" alt="{{ object.title }}">
+    <div class="article_caption">
+        <h2>{{ object.title }}</h2>
+        <p class="article_date">{{ object.date_posted|date:'M d, Y' }}</p>
+    </div>
+    <div class="article_detail">
+        <p> {{ object.description|safe }} </p>
+    </div>
+</div>
+{% endblock content %}  
+
+

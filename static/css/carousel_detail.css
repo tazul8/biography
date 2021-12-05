@@ -1,0 +1,26 @@
+.main {
+    background-color: #EFEFF5;
+    height: 870px;
+}
+.main_img {
+    height: 600px;
+    width: 82%;
+    padding-left: 9%;
+    padding-right: 9%;
+    padding-top: 90px;
+}
+.main_text {
+    padding-top: 30px;
+}
+.arrow {
+    color: #00ACC1;
+    font-size: 20px;
+    padding-left: 9%;
+}
+.main_link {
+    color: #00ACC1;
+    font-size: 20px;
+}
+.main_link:hover {
+    color: #0097A7;
+}

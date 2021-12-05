@@ -1,0 +1,66 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.css' %}">
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/blog.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/carousel_detail.css' %}">
+    <title> {% block title %}  {% endblock title %} </title>
+</head>
+<body>
+    
+<!-- Navbar -->
+<nav class="sticky-top">
+    <input type="checkbox" id="check">
+    <label for="check" class="checkbtn">
+        <i class="fas fa-bars" id="bars"></i>
+        <i class="fas fa-times" id="cancel"></i>
+    </label>
+
+    <a href="/"><label class="logo">Tazul Islam</label></a>
+
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="#blog_section">Blog</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skill">Skill</a></li>
+        <li><a href="#carousel_section">Project</a></li>
+        <li><a href="#contact_section">Contact</a></li>
+    </ul>
+</nav>
+<!-- Navbar End -->
+
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+{% endif %}
+
+{% block content %}  {% endblock content %}
+
+<!-- Footer Section -->
+<div class="footer">
+    <p class="footer_text">&copy; 2021 Md. Tazul Islam. All rights reserved.</p>
+</div>
+<!-- Footer Section End -->
+   
+<script src="{% static 'js/bootstrap/bootstrap.js' %}"></script>
+</body>
+</html>

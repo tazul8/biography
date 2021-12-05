@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+  Home | Tazul Islam 
+{% endblock title %}
+
+{% block content %}
+<!-- Front Section -->
+{% for banner in banners %} 
+  {% if forloop.counter == 1 %}   
+  <section class="front" style="background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('{{ banner.image.url }}');">
+    <div class="inner__content">
+        <h1> {{ banner.title }} </h1>
+        <p> {{ banner.subtitle }} </p>
+      
+        <div class="button">
+            <a href="{{ banner.hire_me_url }}" class="btn btn-hire-me">Hire me</a>
+            <a href="{{ banner.read_more_url }}" class="btn btn-read-more">Read more</a>
+        </div>
+    </div>
+  </section>
+  {% endif %}
+{% endfor %}
+<!-- Front Section End -->
+
+<!-- Blog Section  -->
+<div class="container-fluid" id="blog_section">
+  <h2 class="blog_heading">Blog</h2>     
+  <div class="row blog_row">
+    {% for article in articles %}
+    <div class="col-12 col-md-4">
+      <div class="blog_col" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('{{ article.image.url }}');">
+        <p class="blog_title"><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></p>
+        <p class="blog_date">{{ article.date_posted|date:'M d, Y' }}</p>
+        <a href="{{ article.get_absolute_url }}">
+          <p class="blog_end">Read article</p>
+          <hr>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<!-- Blog Section End -->
+
+<!-- Educatiuon Section -->
+<div id="education">
+  <h2>Education</h2>
+
+  <div class="row edu_row">
+    <div class="col-md-6">
+      <div class="timeline">
+        <div class="timeline-block-1">
+          <div class="timeline-content"></div>
+        </div>
+
+        {% for study in studies %}
+        {% if forloop.first %}
+        <div class="timeline-block-2">
+          <div class="marker"></div>
+          <div class="timeline-content">
+            <h5> {{ study.ongoing_degree }} </h5>
+            <p class="edu">{{ study.ongoing_institute }}</p>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        {% for study in studies %}
+        {% if forloop.first %}
+        <div class="timeline-block-3">
+          <div class="marker"></div>
+          <div class="timeline-content">
+            <h5>{{ study.degree }}</h5>
+            <p class="edu">{{ study.institute }}</p>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+      </div>
+    </div>
+
+    <div class="col-md-6 edu_speech">
+      {% for study in studies %}
+      {% if forloop.first %}
+      <h5> {{ study.title }} </h5>
+      <p> {{ study.description|linebreaks }} </p>
+      {% endif %}
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+<!-- Educatiuon Section End -->
+
+<!-- Skill Section -->
+<div id="skill">
+  <h2>Skill</h2>
+
+  <div class="row skill_row">
+    <div class="col-md-6 first_col">
+      {% for skill in skills %}
+      {% if forloop.first %}
+      <h5>{{ skill.title }}</h5>
+      <p>{{ skill.description|linebreaks }}</p>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <div class="col-md-6 second_col">
+      {% for skill in skills %}
+        {{ skill.skill_name }} <div class="progress progression">
+        <div class="progress-bar bg-info" role="progressbar" style="width: {{ skill.percentage_of_expertise }}%;" aria-valuenow="{{ skill.percentage_of_expertise }}" aria-valuemin="0" aria-valuemax="100">{{ skill.percentage_of_expertise }}%</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- Skill Section End -->
+
+<!-- Project Section  -->
+<div id="carousel_section">
+  <div class="carousel_caption">
+    <h3>My Latest Works</h3>
+    <p class="carousel_subtitle">Here are some projects you can see for detail</p>
+  </div>
+  <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner main_carousel">
+      {% for project in projects %}
+      {% if forloop.counter < 4 %}
+      <div class="carousel-item {% if forloop.first %} active {% endif %}" data-bs-interval="3000">
+        <a href="{{ project.get_absolute_url }}">
+          <img src="{{ project.image.url }}" class="d-block w-100" alt="{{ project.project_name }}">
+        </a>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+<!-- Project Section End  -->
+ 
+<!-- Contact Section -->
+<div id="contact_section">
+  <div class="contact_caption">
+    <h3 class="contact_title">Contact</h3>
+    <P>Hi there! Please leave a message and I will try to reply as soon as possible.</P>
+  </div>
+  <div class="form-group contact_form">
+    <form method="post">
+        {% csrf_token %}
+				{{ contact_form }}
+        <button type="submit" class="btn form_button">Send</button>
+    </form>
+  </div>
+</di>
+<!-- Contact Section End  -->
+  
+<!-- Social Section  -->
+<div class="social_section">
+  <ul class="list-unstyled social">
+    {% for media in medias %}
+    <li>
+      <a href="{{ media.social_media_url }}" target="_blank">
+        <i class="fa fa-{{ media.social_media|lower }} social_fa"></i>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+<!-- Social Section End  -->
+{% endblock content %}  
+

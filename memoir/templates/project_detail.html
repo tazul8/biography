@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+  {{ object.project_name }}
+{% endblock title %}
+
+{% block content %}
+<div class="main">
+    <img class="main_img" src="{{ object.image.url }}" alt="{{ object.project_name }}">
+    <div class="main_text">
+        <span class="arrow">&#8594;</span> 
+        <a class="main_link" href="{{ object.project_url }}" target="_blank">{{ object.project_name }}</a>
+    </div>
+</div>
+{% endblock content %}      
+
+
